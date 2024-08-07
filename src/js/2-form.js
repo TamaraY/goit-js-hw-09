@@ -40,8 +40,13 @@ function handleFormInput(event) {
 }
 
 function populateForm() {
-  let savedFeedbackData = {};
+  const savedFeedbackData = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-  form.elements.email.value = savedFeedbackData.email || '';
-  form.elements.message.value = savedFeedbackData.message || '';
+  if (savedFeedbackData) {
+    form.elements.email.value = savedFeedbackData.email || '';
+    form.elements.message.value = savedFeedbackData.message || '';
+
+    formData.email = savedFeedbackData.email || '';
+    formData.message = savedFeedbackData.message || '';
+  }
 }
